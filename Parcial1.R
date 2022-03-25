@@ -33,6 +33,19 @@ stripchart(holanda, method = "jitter", pch = 19, add = TRUE, col = "blue")
 #98% se presenta -> 176.4 personas
 1 - sum(dpois (0:180, 176.4))
 
+probabilidad<-1 - sum(dpois (0:180, 176.4))
+probabilidad
+x <- seq(130, 200, 0.01)
+plot(x,dpois(x,176.4),main="Avianca N° de pasajeros ",
+     xlab = "número de sillas ", ylab = "Probabilidad", pch=21, col="blue")
+
+plot(140:210,dpois(seq(140,210, by=1),176.4),xlab="número de sillas",
+     ylab="Probabilidad",main = "Avianca N° de pasajeros ",pch=16, col="blue")
+abline(v = 176.4)
+
+ppois(180,176.4,lower.tail = F)
+
+
 
 #x = numero de botellas declaradas no conformes
 # donde la medie es = 400 ml
