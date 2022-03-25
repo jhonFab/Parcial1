@@ -114,8 +114,10 @@ la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distri
 # lo que indica que el 98%  si se presenta  es decir que son  176.4 personas
 probabilidad<-1 - sum(dpois (0:180, 176.4))
 probabilidad
-plot(0:180,dpois(0:180,176.4),main="Avianca N° de pasajeros ",
-     xlab = "número de sillas ", ylab = "Probabilidad", pch=21, col="blue", bg="green", bty="l", tcl=0.5 )
+
+plot(140:210,dpois(seq(140,210, by=1),176.4),xlab="número de sillas",
+     ylab="Probabilidad",main = "Avianca N° de pasajeros ",pch=16, col="blue")
+abline(v = 176.4)
 
 
 
