@@ -1,0 +1,42 @@
+---
+title: "Parcial1"
+author: "Nelson Fabian Alzate, Jhon Faber Linares"
+date: '2022-03-24'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Parcial 1
+1. La tabla mostrada contiene valores de población, en cientos de miles, de las diez ciudades más pobladas de cuatro países en el año 1967:
+
+Table: **Datos**
+
+**Argentina**|**EE.UU**|**Holanda**|**Japón**
+|:------:|:------:|:------:|:------:
+29.66| 77.81|8.68|110.21
+7.61| 35.50|7.31|32.14
+6.35| 24.79|6.02|18.88
+4.10| 20.02|2.64|16.38
+3.80| 16.70|1.75|13.37
+2.75| 9.39|1.72|11.92
+2.70| 9.38|1.51|10.71
+2.69| 8.76|1.42|7.80
+2.51| 7.63|1.31|7.70
+2.44| 7.50|1.29|7.00
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
