@@ -159,9 +159,9 @@ desviacionEstandar<-5
 1-pnorm(415,media,desviacionEstandar)
 
 #par(mfrow = c(1,2))
-x <- seq(1, media, desviacionEstandar)
+x <- seq(380, 440, 0.01)
 plot(x, dnorm(x, media, desviacionEstandar), type = "l",
-     ylim = c(0, 0.04), xlab = "botellas", ylab = "Frecuencia", 
+     ylim = c(0, 0.01), xlab = "botellas", ylab = "Frecuencia", 
      main=expression(paste("Distribución normal ",mu==400," ", sigma==5)), 
      lwd = 2, col = "red")
 
