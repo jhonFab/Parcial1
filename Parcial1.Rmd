@@ -147,6 +147,7 @@ Media= `r media`
 
 Desviación estandar = `r desviacionEstandar`
 
+
 ```{r echo=FALSE}
 #x = numero de botellas declaradas no conformes
 # donde la medie es = 400 ml
@@ -165,7 +166,19 @@ plot(x, dnorm(x, media, desviacionEstandar), type = "l",
      main=expression(paste("Distribución normal ",mu==400," ", sigma==5)), 
      lwd = 2, col = "red")
 
+regionX=seq(415,420,0.01)            
+xP <- c(415,regionX,420)  
+yP <- c(0,dnorm(regionX,400,5),0)
+polygon(xP,yP,col="orange1")
+
+text(410, 0.0015, "P(x>415)")
+text(410, 0.001, "0.135%")
+abline(v = 400)
+
 
 ```
 
+
+### Interpretación 
+El porcentaje de las botellas de gaseosa que son declaradas producto NO CONFORME es de un 0.135%
 
