@@ -187,15 +187,8 @@ la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distri
 # entonces se asegura que todos loa psajeros tengan silla p(x<=180)
 # se casa el 2% de 180 pasajeros que no se presentan, lo es que = 3.6 personas 
 # lo que indica que el 98%  si se presenta  es decir que son  176.4 personas
-<<<<<<< HEAD
-=======
-probabilidad<-1 - sum(dpois (0:180, 176.4))
-probabilidad
 
-plot(140:210,dpois(seq(140,210, by=1),176.4),xlab="número de sillas",
-     ylab="Probabilidad",main = "Avianca N° de pasajeros ",pch=16, col="blue")
-abline(v = 176.4)
->>>>>>> 5c5c444a71c5816c4a1a647958110e183cb179f2
+
 
 probabilidad<-0.02
 n<-180
