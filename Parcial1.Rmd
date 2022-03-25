@@ -124,3 +124,48 @@ plot(0:180,dpois(0:180,176.4),main="Avianca N° de pasajeros ",
 ### Interpretación 
 Teniendo en cuenta los datos la probabilidad que todas las personas tengan
 una silla asugurada es de P= `r probabilidad`
+
+
+### Punto 3
+En la planta envasadora de Coca-Cola FEMSA ubicada en Tocancipá se realiza el embotellado de la CocaCola presentación de 400 mL (en promedio), con una desviación estándar de 5 mL (mililitros). Si se sabe por
+experiencia que este proceso de embotellado sigue una distribución normal, y también se sabe que todo
+producto con más de 415 mL es declarado como NO CONFORME. Determine el porcentaje de las botellas de
+gaseosa que son declaradas producto NO CONFORME.
+
+```{r echo=FALSE}
+#x = numero de botellas declaradas no conformes
+# donde la medie es = 400 ml
+#la desviacion estandar es = 5
+media<-400
+#media
+desviacionEstandar<-5
+#desviacionEstandar
+```
+
+# Datos:
+Media= `r media`
+
+Desviación estandar = `r desviacionEstandar`
+
+```{r echo=FALSE}
+#x = numero de botellas declaradas no conformes
+# donde la medie es = 400 ml
+#la desviacion estandar es = 5
+media<-400
+#media
+desviacionEstandar<-5
+#desviacionEstandar
+
+1-pnorm(415,media,desviacionEstandar)
+
+#par(mfrow = c(1,2))
+x <- seq(41, media, desviacionEstandar)
+plot(x, dnorm(x, media, desviacionEstandar), type = "l",
+     ylim = c(0, 0.08), xlab = "Edad", ylab = "Frecuencia", 
+     main=expression(paste("Distribución normal ",mu==76," ", sigma==5)), 
+     lwd = 2, col = "red")
+
+
+```
+
+
