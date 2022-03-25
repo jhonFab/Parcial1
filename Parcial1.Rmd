@@ -1,5 +1,5 @@
 ---
-title: "Parcial1"
+title: "Parcial 1"
 author: "Nelson Fabian Alzate, Jhon Faber Linares"
 date: '2022-03-24'
 output: html_document
@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Parcial 1
+## Punto 1
 1. La tabla mostrada contiene valores de población, en cientos de miles, de las diez ciudades más pobladas de cuatro países en el año 1967:
 
 Table: **Datos**
@@ -27,7 +27,7 @@ Table: **Datos**
 2.51| 7.63|1.31|7.70
 2.44| 7.50|1.29|7.00
 
-```{r cars}
+```{r pressure, echo=FALSE}
 ##summary(cars)
 argentina <- c(29.66,7.61,6.35,4.10,3.80,2.75,2.70,2.69,2.51,2.44)
 eeuu <- c(77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50)
@@ -37,22 +37,25 @@ japon <- c(110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
 
 ```
 
-## Including Plots
+## a) Blot-plots 
+Construya un box-plot e identifique los puntos extremos. ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
 
-You can also embed plots, for example:
+
+Se realiza por cada pais una grafica de cajas y bitgotes
 
 ```{r  echo=FALSE}
 
-par(mfrow = c(1,4))
+par(mfrow = c(2,2))
 boxplot(argentina,
         main = "País",
         xlab = "Argentina",
         ylab = "Población",
         col = "blue",
         border = "brown",
-        vertical = TRUE,
+        horizontal = TRUE,
         notch = FALSE
 )
+stripchart(argentina, method = "jitter", pch = 19, add = TRUE, col = "yellow")
 
 
 boxplot(eeuu,
@@ -61,27 +64,63 @@ boxplot(eeuu,
         ylab = "Población",
         col = "blue",
         border = "brown",
-        vertical = TRUE,
+        horizontal = TRUE,
         notch = FALSE
 )
+stripchart(eeuu, method = "jitter", pch = 19, add = TRUE, col = "yellow")
+
 boxplot(holanda,
        main = "País",
         xlab = "Holanda",
         ylab = "Población",
         col = "blue",
         border = "brown",
-        vertical = TRUE,
+        horizontal = TRUE,
         notch = FALSE
 )
+
+stripchart(holanda, method = "jitter", pch = 19, add = TRUE, col = "yellow")
 boxplot(japon,
        main = "País",
         xlab = "Japón",
         ylab = "Población",
         col = "blue",
         border = "brown",
-        vertical = TRUE,
+        horizontal = TRUE,
         notch = FALSE
 )
+stripchart(japon, method = "jitter", pch = 19, add = TRUE, col = "yellow")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## b) 
+Compare los centros de cada población, sus dispersiones y su simetría. ¿Cuál es el país más
+homogéneamente habitado? ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
+
+
+### Punto 2
+Avianca se encuentra estudiando la situación de venta de puesto en el vuelo Armenia – Bogotá puesto
+que ha identificado que el 2% de las personas que reservaron puesto, no se presentan a la hora del
+embarque. Teniendo en cuenta que el avión A320 utilizado en esta ruta tiene una capacidad para 180
+pasajeros, la empresa decide vender 181 tiquetes. ¿Cuál es la probabilidad de que todas las personas que
+llegan a embarque puedan tener su silla asegurada y no se presenten quejas por “sobre-vender” sillas ante
+la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distribución Poisson.
+
+
+```{r echo=FALSE}
+#x = numero de pasajeros con una silla asegurada
+# entonces se asegura que todos loa psajeros tengan silla p(x<=180)
+# se casa el 2% de 180 pasajeros que no se presentan, lo es que = 3.6 personas 
+# lo que indica que el 98%  si se presenta  es decir que son  176.4 personas
+probabilidad<-1 - sum(dpois (0:180, 176.4))
+probabilidad
+plot(0:180,dpois(0:180,176.4),main="Avianca N° de pasajeros ",
+     xlab = "número de sillas ", ylab = "Probabilidad", pch=21, col="blue", bg="green", bty="l", tcl=0.5 )
+
+
+
+```
+
+### Interpretación 
+Teniendo en cuenta los datos la probabilidad que todas las personas tengan
+una silla asugurada es de P= `r probabilidad`
