@@ -29,14 +29,62 @@ Table: **Datos**
 
 ```{r cars}
 summary(cars)
+argentina <- c(29.66,7.61,6.35,4.10,3.80,2.75,2.70,2.69,2.51,2.44)
+eeuu <- c(77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50)
+holanda <- c(8.68,7.31,6.02,2.64,1.75,1.72,1.51,1.42,1.31,1.29)
+japon <- c(110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
+
+
 ```
 
 ## Including Plots
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r  echo=FALSE}
+
+par(mfrow = c(1,4))
+boxplot(eeuu,
+        main = "País",
+        xlab = "EE. UU",
+        ylab = "Población",
+        col = "blue",
+        border = "brown",
+        vertical = TRUE,
+        notch = FALSE
+)
+segments(x0 = mean(eeuu), y0 = 0.8,
+         x1 = mean(eeuu), y1 = 1.2,
+         col = "red", lwd = 1)
+points(mean(eeuu), 1, col = 3, pch = 19)
+
+boxplot(argentina,
+        main = "País",
+        xlab = "Argentina",
+        ylab = "Población",
+        col = "blue",
+        border = "brown",
+        vertical = TRUE,
+        notch = FALSE
+)
+boxplot(holanda,
+       main = "País",
+        xlab = "Holanda",
+        ylab = "Población",
+        col = "blue",
+        border = "brown",
+        vertical = TRUE,
+        notch = FALSE
+)
+boxplot(japon,
+       main = "País",
+        xlab = "Japón",
+        ylab = "Población",
+        col = "blue",
+        border = "brown",
+        vertical = TRUE,
+        notch = FALSE
+)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
