@@ -6,7 +6,9 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
+library("moments")
 ```
 
 ## Punto 1
@@ -34,6 +36,18 @@ eeuu <- c(77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50)
 holanda <- c(8.68,7.31,6.02,2.64,1.75,1.72,1.51,1.42,1.31,1.29)
 japon <- c(110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
 
+minArG<-min(argentina)
+maxArg<-max(argentina)
+proArg<-mean(argentina)
+minEEUU<-min(eeuu)
+maxEEUU<-max(eeuu)
+proEEUU<-mean(eeuu)
+minHol<-min(holanda)
+maxHol<-max(holanda)
+proHol<-mean(holanda)
+minJap<-min(japon)
+maxJap<-max(japon)
+proJap<-mean(japon)
 
 ```
 
@@ -90,13 +104,74 @@ boxplot(japon,
         notch = FALSE
 )
 stripchart(japon, method = "jitter", pch = 19, add = TRUE, col = "yellow")
+
 ```
+
+
+### Interpretación : 
+Hay datos atipicos en los paises de Argentina, EE.UU y Japón.En Holanda los datos estan agrupados entre el Q1 y Q3 lo que representa el 50%.
+
+Argentina, Holanda y EE.UU tiene Asimetria positiva pues la media esta mas cerca del Q1 
+
+En la grafica de Japón la mediana se observa en el centro de la caja, lo que quiere decir que la distribución es simétrica
+
+
 
 
 ## b) 
 Compare los centros de cada población, sus dispersiones y su simetría. ¿Cuál es el país más
 homogéneamente habitado? ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
 
+```{r  echo=FALSE}
+
+par(mfrow = c(2,2))
+
+hist(argentina,prob = TRUE, breaks =5, main = "Histograma de frecuencias", 
+     col="blue",ylab = "Frecuencia")
+lines(density(argentina), lwd = 2, col = 'red')
+
+hist(eeuu,prob = TRUE, breaks =5, main = "Histograma de frecuencias", 
+     col="red",ylab = "Frecuencia")
+lines(density(eeuu), lwd = 2, col = 'green')
+hist(holanda,prob = TRUE, breaks =5, main = "Histograma de frecuencias", 
+     col="blue",ylab = "Frecuencia")
+lines(density(holanda), lwd = 2, col = 'red')
+hist(japon,prob = TRUE, breaks =5, main = "Histograma de frecuencias", 
+     col="red",ylab = "Frecuencia")
+lines(density(japon), lwd = 2, col = 'green')
+
+simetriaArg<-skewness(argentina, na.rm = FALSE)# coeficiente de simetria
+curtosisArg<-kurtosis(argentina, na.rm = FALSE)# coeficiente de curtosis
+simetriaEEUU<-skewness(eeuu, na.rm = FALSE)
+curtosisEEUU<-kurtosis(eeuu, na.rm = FALSE)
+simetriaHol<-skewness(holanda, na.rm = FALSE)
+curtosisHol<-kurtosis(holanda, na.rm = FALSE)
+simetriaJap<-skewness(japon, na.rm = FALSE)
+curtosisJap<-kurtosis(japon, na.rm = FALSE)
+
+```
+
+
+### Analisis de las gráficas
+### Interpretación  B: 
+Holanda se puede observar que tiene poca dispersion en los datos.
+Japon es el pais con mucha dispersion en sus datos
+Holanda no tiene datos atipicos compada con los otros paises.
+
+El coficiente de simetria sk = `r simetriaArg` para la gráfica de *Argentina*, esta es de asimetría positiva y con curtosis según el coeficiente     
+cu = `r curtosisArg` de tipo leptocurtica, lo que quiere decir que existen muchos valores concentrados entorno a su media.
+
+
+El coficiente de simetria sk = `r simetriaEEUU` para la gráfica de *EE.UU*, esta es de asimetría positiva y con curtosis según el coeficiente     
+cu = `r curtosisEEUU` de tipo leptocurtica, lo que quiere decir que existen muchos valores concentrados entorno a su media.
+
+
+El coficiente de simetria sk = `r simetriaHol` para la gráfica de *Holanda*, esta es de asimetría positiva y con curtosis según el coeficiente     
+cu = `r curtosisHol` de tipo leptocurtica, lo que quiere decir que existen muchos valores concentrados entorno a su media.
+
+
+El coficiente de simetria sk = `r simetriaJap` para la gráfica de *Japon*, esta es de asimetría positiva y con curtosis según el coeficiente     
+cu = `r curtosisJap` de tipo leptocurtica, lo que quiere decir que existen muchos valores concentrados entorno a su media.
 
 ### Punto 2
 Avianca se encuentra estudiando la situación de venta de puesto en el vuelo Armenia – Bogotá puesto
@@ -112,18 +187,24 @@ la aeronáutica civil? Asuma que las llegadas de los pasajeros siguen una distri
 # entonces se asegura que todos loa psajeros tengan silla p(x<=180)
 # se casa el 2% de 180 pasajeros que no se presentan, lo es que = 3.6 personas 
 # lo que indica que el 98%  si se presenta  es decir que son  176.4 personas
-probabilidad<-1 - sum(dpois (0:180, 176.4))
-probabilidad
-plot(0:180,dpois(0:180,176.4),main="Avianca N° de pasajeros ",
-     xlab = "número de sillas ", ylab = "Probabilidad", pch=21, col="blue", bg="green", bty="l", tcl=0.5 )
 
+probabilidad<-0.02
+n<-180
+lambda<-n*probabilidad
+
+ppois(181,176.4)
+p<-ppois(181,176.4)*100
+
+
+plot(0:181,dpois(0:181,176.4),main=expression(paste("Avianca N° de pasajeros ",lambda==76.4)),
+     xlab = "número de sillas ", ylab = "Probabilidad", pch=21, col="blue", bg="green", bty="l", tcl=0.5 )
 
 
 ```
 
 ### Interpretación 
-Teniendo en cuenta los datos la probabilidad que todas las personas tengan
-una silla asugurada es de P= `r probabilidad`
+la probabilidad de que todas las personas que
+llegan a embarque y tengan una silla asegurada y no se vayan a presentar quejas por “sobre-vender" es  `r p` %
 
 
 ### Punto 3
